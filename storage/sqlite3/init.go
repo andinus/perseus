@@ -2,7 +2,6 @@ package sqlite3
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 	"sync"

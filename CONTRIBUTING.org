@@ -1,0 +1,26 @@
+#+HTML_HEAD: <link rel="stylesheet" href="../../static/style.css">
+#+HTML_HEAD: <link rel="icon" href="../../static/perseus/favicon.png" type="image/png">
+#+EXPORT_FILE_NAME: contributing
+#+TITLE: Contributing - Perseus
+
+Perseus is a simple link aggregation and discussion program. It is written in Go
+& uses sqlite3 for storage.
+
+| Project Home    | [[https://andinus.nand.sh/perseus][Perseus]]           |
+| Source Code     | [[https://tildegit.org/andinus/perseus][Andinus / Perseus]] |
+| GitHub (Mirror) | [[https://github.com/andinus/perseus][Perseus - GitHub]]  |
+
+* Branches
+** master
+Master branch always contains the code that compiles and has passed tests. Users
+must be able to pull the master branch anything and expect that everything
+works. Everything works doesn't mean that previous setup will work, i.e. if user
+has setup for 0.X.a then master will work if last tagged version was 0.X.b but
+if the last tagged version is 0.Y then 0.X's setup may not work.
+** develop
+Develop branch shouldn't be used in production, it may contain code that doesn't
+work or even insecure. Everyone should makes pull requests against develop
+branch.
+* Patches
+Contributors can send their patches to my email address (see commits), a public
+mailing list will be considered if this is used often.

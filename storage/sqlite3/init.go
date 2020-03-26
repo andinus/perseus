@@ -4,17 +4,9 @@ import (
 	"database/sql"
 	"log"
 	"os"
-	"sync"
 
 	_ "github.com/mattn/go-sqlite3"
 )
-
-// DB holds the database connection, mutex & path.
-type DB struct {
-	Path string
-	Mu   *sync.RWMutex
-	Conn *sql.DB
-}
 
 // initErr will log the error and close the database connection if
 // necessary.

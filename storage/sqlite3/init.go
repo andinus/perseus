@@ -25,7 +25,7 @@ func Init(db *DB) {
 	// PERSEUS_DBPATH is checked. If it doesn't exist then use set
 	// it to the default (perseus.db). Note that this is LookupEnv
 	// so if the user has set PERSEUS_DBPATH="" then it'll return
-	// true for exists as it should because techincally user has
+	// true for exists as it should because technically user has
 	// set the env var, the sql.Open statement will fail though.
 	envDBPath, exists := os.LookupEnv("PERSEUS_DBPATH")
 	if !exists {

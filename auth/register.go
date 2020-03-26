@@ -10,7 +10,7 @@ import (
 )
 
 // Register takes in registration details and returns an error. If
-// error doesn't equal nil then the registration was unsucessful.
+// error doesn't equal nil then the registration was unsuccessful.
 // regInfo should have username, password & ip.
 func Register(db *sqlite3.DB, regInfo map[string]string) error {
 	u := user.User{}

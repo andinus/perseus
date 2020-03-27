@@ -5,7 +5,7 @@ import "testing"
 // TestCheckPass tests the checkPass function.
 func TestCheckPass(t *testing.T) {
 	var err error
-	var passhash = make(map[string]string)
+	passhash := make(map[string]string)
 
 	// First we check with static values, these should always pass.
 	passhash["ter4cQ=="] = "$2a$10$ANkaNEFFQ4zxDwTwvAUfoOCqpVIdgtPFopFOTMSrFy39WkaMAYLIC"
@@ -27,9 +27,10 @@ func TestCheckPass(t *testing.T) {
 	}
 
 	// We test the checkPass func by ranging over all values of
-	// passhash.
+	// passhash. We assume that hashPass func returns correct
+	// hashes.
 	for p, h := range passhash {
-		err := checkPass(p, h)
+		err = checkPass(p, h)
 		if err != nil {
 			t.Errorf("password: %s, hash: %s didn't match.",
 				p, h)

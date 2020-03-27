@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register &middot; Perseus</title>
+    <link rel="stylesheet" href="https://andinus.nand.sh/static/style.css">
+    <link rel="stylesheet" href="https://andinus.nand.sh/static/perseus/style.css">
+    <link rel="icon" href="https://andinus.nand.sh/static/perseus/favicon.png" type="image/png">
+  </head>
+  <body>
+    <div id="content">
+      <h1 class="title">Perseus</h1>
+      <p>
+	Perseus is a simple link aggregation and discussion program.
+	It is written in Go &amp; uses sqlite3 for storage.
+      </p>
+      <hr>{{ if .SafeList }}
+      <ul>{{ range .SafeList }}
+        <li>{{ . }}</li>{{ end }}
+      </ul>{{end}} {{ if .List }}
+      <ul>{{ range .List }}
+        <li>{{ . }}</li>{{ end }}
+      </ul>{{end}} {{ if .Error }}
+      <ul class="error">{{ range .Error }}
+        <li>{{ . }}</li>{{ end }}
+      </ul>{{end}} {{ if .Success }}
+      <ul class="success">{{ range .Success }}
+        <li>{{ . }}</li>{{ end }}
+      </ul>{{end}} {{ if .Notice }}
+      <ul class="notice">{{ range .Notice }}
+        <li>{{ . }}</li>{{ end }}
+      </ul>{{end}}
+      <form action="./register" method="post">
+	<h4>Username</h4>
+        <input type="text" name="username" required>
+	<h4>Password</h4>
+	<input type="password" name="password" required>
+        <input type="submit" name="submit" value="Go!">
+      </form>
+    </div>
+    <div id="postamble" class="status">
+      <p class="postamble">
+	<a href="https://andinus.nand.sh/">Andinus</a>
+	&nbsp;/&nbsp;
+	<a href="https://andinus.nand.sh/perseus">Perseus</a>
+	<span style="float:right">
+	  <a href="https://tildegit.org/andinus/perseus">
+	    Source Code
+	  </a>
+	</span>
+      </p>
+    </div>
+  </body>
+</html>

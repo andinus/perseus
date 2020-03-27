@@ -9,13 +9,13 @@ import (
 
 // Login takes in login details and returns an error. If error doesn't
 // equal nil then consider login failed.
-func Login(db *sqlite3.DB, loginInfo map[string]string) error {
+func Login(db *sqlite3.DB, uInfo map[string]string) error {
 	// Acquire read lock on the database.
 	db.Mu.RLock()
 	defer db.Mu.RUnlock()
 
 	u := user.User{}
-	u.SetUsername(loginInfo["username"])
+	u.SetUsername(uInfo["username"])
 
 	// Get password for this user from the database.
 	stmt, err := db.Conn.Prepare("SELECT password FROM users WHERE username = ?")
@@ -36,7 +36,7 @@ func Login(db *sqlite3.DB, loginInfo map[string]string) error {
 	u.SetPassword(pass)
 
 	// Check user's password.
-	err = checkPass(loginInfo["password"], u.Password())
+	err = checkPass(uInfo["password"], u.Password())
 	if err != nil {
 		log.Printf("auth/login.go: %s%s\n",
 			"user login failed, username: ", u.Username())

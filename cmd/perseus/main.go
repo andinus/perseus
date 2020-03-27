@@ -30,6 +30,9 @@ func main() {
 	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
 		web.HandleRegister(w, r, db)
 	})
+	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
+		web.HandleLogin(w, r, db)
+	})
 
 	log.Printf("main/main.go: listening on port %s...", envPort)
 	log.Fatal(srv.ListenAndServe())

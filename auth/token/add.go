@@ -37,9 +37,9 @@ func AddToken(db *sqlite3.DB, uInfo map[string]string) (token string, err error)
 	}
 
 	stmt, err := db.Conn.Prepare(`
-INSERT INTO access(id, username, genTime) values(?, ?, ?)`)
+INSERT INTO access(id, token, genTime) values(?, ?, ?)`)
 	if err != nil {
-		log.Printf("auth/tokenr.go: %s\n",
+		log.Printf("auth/token.go: %s\n",
 			"failed to prepare statement")
 		return
 	}

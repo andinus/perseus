@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register &middot; Perseus</title>
+    <title>Login &middot; Perseus</title>
     <link rel="stylesheet" href="https://andinus.nand.sh/static/style.css">
     <link rel="stylesheet" href="https://andinus.nand.sh/static/perseus/style.css">
     <link rel="icon" href="https://andinus.nand.sh/static/perseus/favicon.png" type="image/png">
@@ -26,12 +26,12 @@
       <ul class="notice">{{ range .Notice }}
         <li>{{ . }}</li>{{ end }}
       </ul>{{end}}
-      <form action="./register" method="post">
+      <form action="./login" method="post">
 	<h4>Username</h4>
         <input type="text" name="username" required>
 	<h4>Password</h4>
 	<input type="password" name="password" required>
-        <input type="submit" name="submit" value="Register!">
+        <input type="submit" name="submit" value="Login!">
       </form>
     </div>
     <div id="postamble" class="status">

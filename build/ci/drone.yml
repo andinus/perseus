@@ -1,8 +1,13 @@
 ---
 kind: pipeline
-name: go-test
+name: testing
 
 steps:
+- name: vet
+  image: golang:1.13
+  commands:
+  - go vet ./...
+
 - name: test
   image: golang:1.13
   commands:
@@ -10,10 +15,10 @@ steps:
 
 ---
 kind: pipeline
-name: go-build
+name: build
 
 steps:
-- name: build-obsd
+- name: openbsd-amd64
   image: golang:1.13
   environment:
     GOARCH: amd64
@@ -21,7 +26,7 @@ steps:
   commands:
   - go build ./cmd/perseus
 
-- name: build-linux
+- name: linux-amd64
   image: golang:1.13
   environment:
     GOARCH: amd64
@@ -29,7 +34,7 @@ steps:
   commands:
   - go build ./cmd/perseus
 
-- name: build-darwin
+- name: darwin-amd64
   image: golang:1.13
   environment:
     GOARCH: amd64

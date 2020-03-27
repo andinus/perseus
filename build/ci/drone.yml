@@ -25,19 +25,3 @@ steps:
     GOOS: openbsd
   commands:
   - go build ./cmd/perseus
-
-- name: linux-amd64
-  image: golang:1.13
-  environment:
-    GOARCH: amd64
-    GOOS: linux
-  commands:
-  - go build ./cmd/perseus
-
-- name: darwin-amd64
-  image: golang:1.13
-  environment:
-    GOARCH: amd64
-    GOOS: darwin
-  commands:
-  - go build ./cmd/perseus

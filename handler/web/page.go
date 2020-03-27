@@ -9,4 +9,5 @@ type Page struct {
 	Error    []string
 	Success  []string
 	Notice   []string
+	Version  string
 }

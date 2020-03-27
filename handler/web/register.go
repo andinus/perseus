@@ -8,12 +8,13 @@ import (
 	"strings"
 
 	"tildegit.org/andinus/perseus/auth"
+	"tildegit.org/andinus/perseus/core"
 	"tildegit.org/andinus/perseus/storage/sqlite3"
 )
 
 // HandleRegister handles /register pages.
 func HandleRegister(w http.ResponseWriter, r *http.Request, db *sqlite3.DB) {
-	p := Page{}
+	p := Page{Version: core.Version()}
 	p.Notice = []string{
 		"Only [a-z] & [0-9] allowed for username",
 		"Password length must be greater than 8 characters",

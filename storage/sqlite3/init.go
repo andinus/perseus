@@ -41,32 +41,21 @@ func Init(db *DB) {
 	}
 
 	sqlstmt := []string{
-		// Create users table, this will hold information on
-		// account like id, type & other user specific
-		// information. We are using id because later we may
-		// want to add username change or account delete
-		// functionality. username here is not unique because
-		// if user deletes account then we'll change it to
-		// "ghost" or something. This doesn't mean usernames
-		// shouldn't be unique, registration table requires
-		// them to be unique so it'll fail if they aren't
-		// unique.
+		// Users can login with multiple devices and so
+		// multiple tokens will be created. This shouldn't be
+		// used for login, logins should be verified with
+		// users table only.
+		`CREATE TABLE IF NOT EXISTS access (
+       id       TEXT NOT NULL,
+       token    TEXT NOT NULL,
+       genTime TEXT NOT NULL);`,
+
 		`CREATE TABLE IF NOT EXISTS users (
        id       TEXT PRIMARY KEY,
-       type     TEXT NOT NULL DEFAULT notadmin,
-       username TEXT NOT NULL,
-       password TEXT NOT NULL);`,
-
-		// Create registration table, this will hold user
-		// account details like registration time, ip &
-		// similar details. This is the only place that will
-		// relate the username to id even after deletion.
-		// usernames must be unique in this table.
-		`CREATE TABLE IF NOT EXISTS registration (
-       id       TEXT PRIMARY KEY,
-       username TEXT NOT NULL UNIQUE,
-       reg_time TEXT NOT NULL,
-       reg_ip   TEXT NOT NULL);`,
+       type     TEXT NOT NULL DEFAULT user,
+       username VARCHAR(128) NOT NULL UNIQUE,
+       password TEXT NOT NULL,
+       regTime  TEXT NOT NULL);`,
 	}
 
 	// We range over statements and execute them one by one, this

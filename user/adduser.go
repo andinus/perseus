@@ -8,7 +8,7 @@ import (
 )
 
 // AddUser adds the user to record.
-func (u *User) AddUser(db *sqlite3.DB) error {
+func (u User) AddUser(db *sqlite3.DB) error {
 	// Acquire write lock on the database.
 	db.Mu.Lock()
 	defer db.Mu.Unlock()
@@ -30,7 +30,7 @@ INSERT INTO users(id, username, password, regTime) values(?, ?, ?, ?)`)
 	}
 	defer usrStmt.Close()
 
-	_, err = usrStmt.Exec(u.id, u.username, u.password, time.Now().UTC())
+	_, err = usrStmt.Exec(u.ID, u.Username, u.Password, time.Now().UTC())
 	if err != nil {
 		log.Printf("user/adduser.go: %s\n",
 			"failed to execute statement")

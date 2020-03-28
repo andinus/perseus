@@ -18,12 +18,12 @@ func (u *User) GetID(db *sqlite3.DB) error {
 	defer stmt.Close()
 
 	var id string
-	err = stmt.QueryRow(u.username).Scan(&id)
+	err = stmt.QueryRow(u.Username).Scan(&id)
 	if err != nil {
 		log.Printf("user/getid.go: %s\n",
 			"query failed")
 	}
-	u.id = id
+	u.ID = id
 
 	return err
 }

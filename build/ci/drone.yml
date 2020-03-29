@@ -6,12 +6,12 @@ steps:
 - name: vet
   image: golang:1.13
   commands:
-  - go vet ./...
+    - go vet ./...
 
 - name: test
   image: golang:1.13
   commands:
-  - go test -v ./auth
+    - go test -v ./password
 
 ---
 kind: pipeline
@@ -24,4 +24,4 @@ steps:
     GOARCH: amd64
     GOOS: openbsd
   commands:
-  - go build ./cmd/perseus
+    - go build ./cmd/perseus

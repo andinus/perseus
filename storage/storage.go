@@ -1,17 +1,23 @@
 package storage
 
 import (
+	"database/sql"
 	"sync"
-
-	"tildegit.org/andinus/perseus/storage/sqlite3"
 )
 
+// DB holds the database connection, mutex & path.
+type DB struct {
+	Path string
+	Mu   *sync.RWMutex
+	Conn *sql.DB
+}
+
 // Init initializes the database.
-func Init() *sqlite3.DB {
-	var db sqlite3.DB = sqlite3.DB{
+func Init() *DB {
+	db := DB{
 		Mu: new(sync.RWMutex),
 	}
 
-	sqlite3.Init(&db)
+	initDB(&db)
 	return &db
 }

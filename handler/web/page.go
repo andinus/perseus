@@ -1,11 +1,8 @@
 package web
 
-import (
-	"html/template"
-)
+import "html/template"
 
-// Page holds page information that is sent to all webpages rendered
-// by perseus.
+// Page holds page information.
 type Page struct {
 	SafeList []template.HTML
 	List     []string

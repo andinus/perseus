@@ -1,4 +1,4 @@
-package user
+package account
 
 // User holds information about the user.
 type User struct {
@@ -6,4 +6,5 @@ type User struct {
 	Username string
 	Password string
 	Hash     string
+	Token    string
 }

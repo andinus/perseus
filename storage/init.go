@@ -1,4 +1,4 @@
-package sqlite3
+package storage
 
 import (
 	"database/sql"
@@ -17,8 +17,7 @@ func initErr(db *DB, err error) {
 	log.Fatalf("Initialization Error :: %s", err.Error())
 }
 
-// Init initializes a sqlite3 database.
-func Init(db *DB) {
+func initDB(db *DB) {
 	var err error
 
 	// We set the database path, first the environment variable
@@ -36,7 +35,7 @@ func Init(db *DB) {
 	db.Conn, err = sql.Open("sqlite3", db.Path)
 	if err != nil {
 		log.Printf("sqlite3/init.go: %s\n",
-			"Failed to open database connection")
+			"failed to open database connection")
 		initErr(db, err)
 	}
 
@@ -50,11 +49,11 @@ func Init(db *DB) {
        token    TEXT NOT NULL,
        genTime TEXT NOT NULL);`,
 
-		`CREATE TABLE IF NOT EXISTS users (
+		`CREATE TABLE IF NOT EXISTS accounts (
        id       TEXT PRIMARY KEY,
        type     TEXT NOT NULL DEFAULT user,
        username VARCHAR(128) NOT NULL UNIQUE,
-       password TEXT NOT NULL,
+       hash     TEXT NOT NULL,
        regTime  TEXT NOT NULL);`,
 	}
 
@@ -67,7 +66,7 @@ func Init(db *DB) {
 
 		if err != nil {
 			log.Printf("sqlite3/init.go: %s\n",
-				"Failed to prepare statement")
+				"failed to prepare statement")
 			log.Println(s)
 			initErr(db, err)
 		}
@@ -76,7 +75,7 @@ func Init(db *DB) {
 		stmt.Close()
 		if err != nil {
 			log.Printf("sqlite3/init.go: %s\n",
-				"Failed to execute statement")
+				"failed to execute statement")
 			log.Println(s)
 			initErr(db, err)
 		}

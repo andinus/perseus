@@ -15,25 +15,24 @@ func main() {
 	db := storage.Init()
 	defer db.Conn.Close()
 
-	envPort, exists := os.LookupEnv("PERSEUS_PORT")
-	if !exists {
+	envPort := os.Getenv("PERSEUS_PORT")
+	if envPort == "" {
 		envPort = "8080"
 	}
-	addr := fmt.Sprintf("127.0.0.1:%s", envPort)
 
 	srv := &http.Server{
-		Addr:         addr,
+		Addr:         fmt.Sprintf("127.0.0.1:%s", envPort),
 		WriteTimeout: 8 * time.Second,
 		ReadTimeout:  8 * time.Second,
 	}
 
 	http.HandleFunc("/register", func(w http.ResponseWriter, r *http.Request) {
-		web.HandleRegister(w, r, db)
+		web.RegisterHandler(w, r, db)
 	})
 	http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-		web.HandleLogin(w, r, db)
+		web.LoginHandler(w, r, db)
 	})
 
-	log.Printf("main/main.go: listening on port %s...", envPort)
+	log.Printf("perseus: listening on port %s...", envPort)
 	log.Fatal(srv.ListenAndServe())
 }

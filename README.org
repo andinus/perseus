@@ -1,10 +1,9 @@
-#+HTML_HEAD: <link rel="stylesheet" href="../../static/style.css">
-#+HTML_HEAD: <link rel="icon" href="../../static/perseus/favicon.png" type="image/png">
+#+SETUPFILE: ~/.emacs.d/org-templates/projects.org
 #+EXPORT_FILE_NAME: index
 #+TITLE: Perseus
 
-Perseus is a simple link aggregation and discussion program. It is written in Go
-& uses sqlite3 for storage.
+Perseus is a simple link aggregation and discussion program. It is
+written in Go & uses sqlite3 for storage.
 
 | Project Home    | [[https://andinus.nand.sh/perseus][Perseus]]           |
 | Source Code     | [[https://tildegit.org/andinus/perseus][Andinus / Perseus]] |
